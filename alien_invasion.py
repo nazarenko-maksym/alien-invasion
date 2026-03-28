@@ -1,4 +1,5 @@
 import sys
+from random import randint
 
 import pygame
 
@@ -100,7 +101,9 @@ class AlienInvasion:
         current_x, current_y = star_width, star_height
         while current_y < (self.settings.screen_height - 3 * star_height):
             while current_x < (self.settings.screen_width - 2 * star_width):
-                self._create_star(current_x, current_y)
+                random_number = randint(-10, 10)
+                if random_number >= 0:
+                    self._create_star(current_x, current_y)
                 current_x += 2 * star_width
             # Finished a row; reset x value, and increment y value
             current_x = star_width
