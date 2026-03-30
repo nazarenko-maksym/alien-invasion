@@ -1,6 +1,7 @@
 import sys
 
 import pygame
+from random import randint
 
 from settings import Settings
 from raindrop import Raindrop
@@ -69,7 +70,8 @@ class Rain:
         current_x, current_y = raindrop_width, raindrop_height
         while current_y < (self.settings.screen_height - 2 * raindrop_height):
             while current_x < (self.settings.screen_width - 2 * raindrop_width):
-                self._create_raindrop(current_x, current_y)
+                if randint(0,1):
+                    self._create_raindrop(current_x, current_y)
                 current_x += 2 * raindrop_width
             # Finished a row; reset x value, and increment y value
             current_x = raindrop_width
@@ -79,7 +81,8 @@ class Rain:
         """Create one horizontal line of raindrops."""
         current_x, current_y = raindrop_width, raindrop_height
         while current_x < (self.settings.screen_width - 2 * raindrop_width):
-            self._create_raindrop(current_x, current_y)
+            if randint(0,1):
+                self._create_raindrop(current_x, current_y)
             current_x += 2 * raindrop_width
 
     def _create_raindrop(self, x_position, y_position):
@@ -99,6 +102,7 @@ class Rain:
                 raindrop_width, raindrop_height = raindrop.rect.size
                 self._create_rain_line(raindrop_width, raindrop_height)
                 break
+        print(len(self.raindrops))
 
     def _remove_raindrops(self, raindrop):
         """Remove the raindrop from bottom of the screen."""
