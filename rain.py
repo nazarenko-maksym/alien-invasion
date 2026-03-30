@@ -75,6 +75,13 @@ class Rain:
             current_x = raindrop_width
             current_y += 2 * raindrop_height
 
+    def _create_rain_line(self, raindrop_width, raindrop_height):
+        """Create one horizontal line of raindrops."""
+        current_x, current_y = raindrop_width, raindrop_height
+        while current_x < (self.settings.screen_width - 2 * raindrop_width):
+            self._create_raindrop(current_x, current_y)
+            current_x += 2 * raindrop_width
+
     def _create_raindrop(self, x_position, y_position):
         """Create a raindrop and place it in the rain."""
         new_raindrop = Raindrop(self)
@@ -86,13 +93,18 @@ class Rain:
 
     def _check_rain_bottom_edge(self):
         """Respond appropriately if any raindrop have reached bottom."""
-        for raindrop in self.raindrops.sprites():
+        for raindrop in self.raindrops.copy():
             if raindrop.check_bottom_edge():
                 self._remove_raindrops(raindrop)
+                raindrop_width, raindrop_height = raindrop.rect.size
+                self._create_rain_line(raindrop_width, raindrop_height)
+                break
 
     def _remove_raindrops(self, raindrop):
         """Remove the raindrop from bottom of the screen."""
-        self.raindrops.remove(raindrop)
+        for raindrop in self.raindrops.copy():
+            if raindrop.check_bottom_edge():
+                self.raindrops.remove(raindrop)
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
