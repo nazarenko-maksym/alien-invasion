@@ -13,7 +13,7 @@ from alien import Alien
 FPS = 60
 FULLSCREEN_MODE = False
 
-class AlienInvasion:
+class SidewayShooter:
     """Overall class to manage game assets and behavior."""
 
     def __init__(self):
@@ -198,5 +198,5 @@ class AlienInvasion:
 
 if __name__ == '__main__':
     # Make a game instance, and run the game
-    ai = AlienInvasion()
-    ai.run_game()
+    ss = SidewayShooter()
+    ss.run_game()
