@@ -15,7 +15,7 @@ class Alien(Sprite):
         self.rect = self.image.get_rect()
 
         # Start each new alien near the top right of the screen
-        self.rect.x = 0 # TODO is it works?
+        self.rect.x = self.rect.width
         self.rect.y = self.rect.height
 
         # Store the alien's exact vertical position
@@ -27,7 +27,6 @@ class Alien(Sprite):
         return (self.rect.bottom >= screen_rect.bottom) or (self.rect.top <= 0)
 
     def update(self):
-        # TODO Move the alien up or down
-        """Move the alien right or left."""
+        """Move the alien up or down."""
         self.y += self.settings.alien_speed * self.settings.fleet_direction
         self.rect.y = self.y
