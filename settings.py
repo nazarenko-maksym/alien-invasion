@@ -28,3 +28,4 @@ class Settings:
         self.fleet_move_left_speed = 10
         # fleet_direction of 1 represents right (up); -1 represents left (down)
         self.fleet_direction = 1
+        self.aliens_to_hit = 5
